@@ -8,5 +8,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^3.3.7",
+    "express": "^4.17.1",
+    "express-art-template": "^1.0.1",
+    "express-session": "^1.17.1",
+    "jquery": "^3.2.1",
+    "md5": "^2.3.0",
+    "mongoose": "^5.9.27",
+    "vue-router": "^3.4.3"
+  }
 }
