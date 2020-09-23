@@ -2,6 +2,7 @@
 var express = require('express')
 var User = require('../models/user')
 var md5 = require('md5')
+var Blog = require('../models/topic')
 
 // 配置
 var routerSession = express.Router()
@@ -11,9 +12,19 @@ var routerSession = express.Router()
 // 首页
 routerSession.get('/', function (req, res) {
   //console.log(req.session.user);
-  res.render('index.html',{
-    user:req.session.user
+  Blog.find(function (errfind, blogs) {
+    if (errfind){
+      console.log(errfind);
+    }
+
+    // console.log(blogs);
+    res.render('index.html',{
+      user:req.session.user,
+      blogs:blogs
+    })
   })
+
+
 })
 
 // 登录前
@@ -56,6 +67,16 @@ routerSession.post('/register', function (req, res) {
   // 2、操作数据
   // 3、响应请求
   var body = req.body
+  // console.log(body);
+  // new User({
+  //       email: '553374668@qq.com',
+  //       nickname: 'LongYu',
+  //       password: '123456'
+  //     }
+  // ).save(function (err, rest) {
+  //   console.log(err);
+  //   console.log(rest);
+  // })
   //对密码进行加密,多层加密，防破解
   body.password = md5(md5(body.password))
   User.findOne({
@@ -69,6 +90,7 @@ routerSession.post('/register', function (req, res) {
         ]
       },
       function (err,findUser) {
+        // console.log('hear',err,findUser);
         if (err) {
         return res.status(500).json({
           err_code:1
@@ -100,7 +122,7 @@ routerSession.post('/register', function (req, res) {
   })
 })
 
-// 等处
+// 等出
 routerSession.get('/logout', function (req, res) {
   if (req.session.user)
   {

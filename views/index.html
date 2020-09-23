@@ -5,6 +5,7 @@
 {{block 'body'}}
 <section class="container">
   <ul class="media-list">
+   {{each blogs}}
     <li class="media">
       <div class="media-left">
         <a href="#">
@@ -12,43 +13,13 @@
           </a>
       </div>
       <div class="media-body">
-        <h4 class="media-heading"><a href="/topics/123">Media heading</a></h4>
-        <p>sueysok 回复了问题 • 2 人关注 • 1 个回复 • 187 次浏览 • 2017-10-20 13:45</p>
+        <h4 class="media-heading"><a href="/show?id={{$value.id}}">{{$value.title}}</a></h4>
+        <h6>{{$value.model}}</h6>
+        <p>sueysok 回复了问题 • 2 人关注 • 1 个回复 • 187 次浏览 •{{$value.created_time}}</p>
       </div>
     </li>
-    <li class="media">
-      <div class="media-left">
-        <a href="#">
-            <img width="40" height="40" class="media-object" src="../public/img/avatar-default.png" alt="...">
-          </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading"><a href="/topics/123">Media heading</a></h4>
-        <p>sueysok 回复了问题 • 2 人关注 • 1 个回复 • 187 次浏览 • 2017-10-20 13:45</p>
-      </div>
-    </li>
-    <li class="media">
-      <div class="media-left">
-        <a href="#">
-            <img width="40" height="40" class="media-object" src="../public/img/avatar-default.png" alt="...">
-          </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading"><a href="/topics/123">Media heading</a></h4>
-        <p>sueysok 回复了问题 • 2 人关注 • 1 个回复 • 187 次浏览 • 2017-10-20 13:45</p>
-      </div>
-    </li>
-    <li class="media">
-      <div class="media-left">
-        <a href="#">
-            <img width="40" height="40" class="media-object" src="../public/img/avatar-max-img.png" alt="...">
-          </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading"><a href="/topics/123">Media heading</a></h4>
-        <p>sueysok 回复了问题 • 2 人关注 • 1 个回复 • 187 次浏览 • 2017-10-20 13:45</p>
-      </div>
-    </li>
+  {{/each}}
+  </ul>
 
   <nav aria-label="Page navigation">
     <ul class="pagination">
@@ -71,3 +42,30 @@
   </nav>
 </section>
 {{/block}}
+<!--{{block 'script'}}-->
+<!--<script>-->
+
+<!--    var formData = $(this).serialize()-->
+<!--    $.ajax({-->
+<!--      url: '/',-->
+<!--      type: 'get',-->
+<!--      data: formData,-->
+<!--      dataType: 'json',-->
+<!--      success: function (data) {-->
+<!--        console.log('111',data);-->
+<!--        var Blogs = data.blogs-->
+<!--        var err_code = data.err_code-->
+<!--        if (err_code === 0) {-->
+<!--          window.alert('提交成功！')-->
+<!--// 服务端重定向针对异步请求无效-->
+<!--          window.location.href = '/'-->
+<!--        } else if (err_code === 1) {-->
+<!--          window.alert('提交失败！')-->
+<!--        }-->
+<!--      }-->
+<!--    })-->
+
+<!--</script>-->
+
+<!--{{/block}}-->
+

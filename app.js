@@ -15,7 +15,7 @@ var app = express()
 //公开资源配置
 //path.join(__dirname, 'public')提供给express.static函数相对于启动node过程。如果从另一个目录运行Express应用程序，则使用要服务的目录的绝对路径更安全：
 app.use('/public',express.static(path.join(__dirname, 'public')))
-app.use('/node_modules', express.static(path.join(__dirname,'./node_modules/')))
+app.use('/node_modules/', express.static(path.join(__dirname,'./node_modules/')))
 
 // 配置模板引擎
 // 告诉express框架，当渲染后缀为.html的模板时，使用express-art-template
@@ -39,7 +39,7 @@ app.use(session({
 //路由
 app.use(routerSession)
 app.use((routerPerson))
-// app.use(routerTopic)
+app.use(routerTopic)
 
 app.listen(port, function () {
   console.log('runtime... http://127.0.0.1:8080');

@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 
 var Schema = mongoose.Schema
 
-mongoose.connect('mongodb://localhost:27017/Blog');
+mongoose.connect('mongodb://localhost:27017/Bloguser');
 
 var userSchema = new Schema({
   email:{

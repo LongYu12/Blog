@@ -7,22 +7,17 @@ var md5 = require('md5')
 var routerPerson = express.Router()
 
 // 个人主页
-routerPerson.get('/information',function (req,res) {
-  /*User.findOne({
-    nickname:req.session.user.nickname
-  },function (err, data) {
-    if (err) {
-      res.status(500).json({
-        err_code:500,
-        sucess:false
-      })
-    }else {
-      res.status(200).json(data)
-    }
+routerPerson.get('/Information',function (req,res) {
+   req.session.user.email
+  User.findOne({email:req.session.user.email}, function (errfind, user) {
+    if (errfind)
+      console.log(errfind);
+    // console.log(user);
+    res.render('./settings/profile.html',{
+      user:user
+    })
   })
-  console.log(req.session.user.nickname);
-  res.send('fse')*/
-  res.status(200).json({su:true})
+
 })
 
 // 导出

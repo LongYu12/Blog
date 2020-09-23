@@ -5,11 +5,11 @@
 {{block 'body'}}
 <section class="container">
   <div class="row">
-    <div class="col-md-5">
-      <form>
+    <div class="col-md-8">
+      <form id="new_form" >
         <div class="form-group">
-          <label for="exampleInputEmail1">选择板块</label>
-          <select class="form-control">
+          <label for="model">选择板块</label>
+          <select class="form-control" id="model" name="model">
             <option>分享</option>
             <option>问答</option>
             <option>招聘</option>
@@ -17,16 +17,45 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail1">标题</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          <label for="title">标题</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="标题" required>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">内容</label>
-          <textarea class="form-control" rows="3"></textarea>
+          <label for="content">内容</label>
+          <textarea class="form-control" id="content" name="content" rows="30" cols="100" required></textarea>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default btn-new">发表博客</button>
       </form>
     </div>
   </div>
 </section>
+
+
+{{/block}}
+{{block 'script'}}
+<script>
+  $('#new_form').on('submit', function (e) {
+// preventDefault 的作用是取消浏览器默认动作
+    e.preventDefault()
+    var formData = $(this).serialize()
+    $.ajax({
+      url: '/new',
+      type: 'post',
+      data: formData,
+      dataType: 'json',
+      success: function (data) {
+        console.log('111',data);
+        var err_code = data.err_code
+        if (err_code === 0) {
+          window.alert('提交成功！')
+// 服务端重定向针对异步请求无效
+          window.location.href = '/'
+        } else if (err_code === 1) {
+          window.alert('提交失败！')
+        }
+      }
+    })
+  })
+</script>
+
 {{/block}}

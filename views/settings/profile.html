@@ -1,19 +1,36 @@
 {{extend '../_layouts/home.html'}}
 
-{{block 'title'}}{{'多人博客 - 首页'}}{{/block}}
+{{block 'title'}}{{'多人博客 - 个人主页'}}{{/block}}
+
+{{block 'head'}}
+<style>
+  .panel .panel-heading .action i {
+    margin-right: 10px;
+  }
+  .out-side{
+    background-color: rgba(240,230,140,0.5);
+    margin: 0 auto;
+    margin-top: -20px;
+    max-width: 900px;
+    height: 50em;
+    border-radius: 10px;
+    padding:40px;
+  }
+</style>
+{{/block}}
 
 {{block 'body'}}
-<section class="container">
-  {{include '../_partials/settings-nav.html'}}
-  <div class="col-md-5">
+<section class="container out-side">
+<!--  {{include '../_partials/settings-nav.html'}}-->
+  <div class="col-md-6">
     <form>
       <div class="form-group">
-        <label for="exampleInputEmail1">账号</label>
-        <p class="form-control-static">email@example.com</p>
+        <label>账号</label>
+        <p class="form-control-static">{{user.email}}</p>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">昵称</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+        <p>{{user.nickname}}</p>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">介绍</label>
